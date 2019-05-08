@@ -24,6 +24,8 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "test",
+    "githubUrl": "https://github.com/krasovsky22/expo-react-native-notifications-test"
   }
 }
