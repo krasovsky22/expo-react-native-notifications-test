@@ -1,71 +1,35 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Permissions, Notifications } from "expo";
-import NotificationPopup from "./NotificationPopup";
+import React, { Component } from "react";
+import { Text, View } from "react-native";
+import { Link, NativeRouter, Route } from "react-router-native";
 
-async function register() {
-  const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+import "bootstrap/dist/css/bootstrap.min.css";
 
-  if (status !== "granted") {
-    alert("Please, enable notification permissions in settings.");
-    return;
-  }
+import Home from "./src/view/Home";
+import About from "./src/view/About";
 
-  // Get the token that uniquely identifies this device
-  let token = await Notifications.getExpoPushTokenAsync();
-  console.log(token);
-}
-
-export default class App extends React.Component {
-  state = {
-    notification: null
-  };
-
-  componentWillMount() {
-    register();
-
-    this.notificationListener = Notifications.addListener(
-      this.listenForNotification
-    );
-  }
-
-  componentWillUnmount() {
-    this.notificationListener &&
-      Notifications.removeListener(this.notificationListener);
-  }
-
-  listenForNotification = ({ origin, data: { data } }) => {
-    this.setState({
-      notification: {
-        origin,
-        data
-      }
-    });
-  };
-
+class App extends Component {
   render() {
-    const { notification } = this.state;
-
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+      <NativeRouter>
+        <View>
+          <View>
+            <Link to="/" underlayColor="#f0f4f7">
+              <Text>Home</Text>
+            </Link>
+            <Link to="/about" underlayColor="#f0f4f7">
+              <Text>About</Text>
+            </Link>
+            <Link to="/topics" underlayColor="#f0f4f7">
+              <Text>Topics</Text>
+            </Link>
+          </View>
 
-        {notification && (
-          <NotificationPopup
-            origin={notification.origin}
-            data={notification.data}
-          />
-        )}
-      </View>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+        </View>
+      </NativeRouter>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
+export default App;
