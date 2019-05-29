@@ -1,12 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Permissions, Notifications } from "expo";
 
-export default class About extends React.Component {
+export default class Inbox extends React.Component {
   render() {
     return (
       <View>
-        <Text>ABOUT View</Text>
+        <Text>Inbox</Text>
       </View>
     );
   }

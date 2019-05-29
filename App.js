@@ -1,43 +1,76 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
-import { Link, NativeRouter, Route } from "react-router-native";
 
-import { ThemeProvider, Header } from "react-native-elements";
+import Icon from "react-native-vector-icons/Feather";
+
+import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+import { Trips, Inbox, Saved, Explore } from "@views";
 
 const theme = {};
-
-import Home from "./src/view/Home";
-import About from "./src/view/About";
 
 class App extends Component {
   render() {
     return (
-      <NativeRouter>
-        <ThemeProvider theme={theme}>
-          <View>
-            <Header
-              placement="left"
-              leftComponent={{ icon: "menu", color: "#fff" }}
-              centerComponent={{ text: "MY TITLE", style: { color: "#fff" } }}
-              rightComponent={{ icon: "home", color: "#fff" }}
-            />
-            <Link to="/" underlayColor="#f0f4f7">
-              <Text>Home</Text>
-            </Link>
-            <Link to="/about" underlayColor="#f0f4f7">
-              <Text>About asdasd</Text>
-            </Link>
-            <Link to="/topics" underlayColor="#f0f4f7">
-              <Text>Topics</Text>
-            </Link>
-          </View>
-
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
-        </ThemeProvider>
-      </NativeRouter>
+      <View>
+        <Text>Hello World</Text>
+      </View>
     );
   }
 }
 
-export default App;
+const Tabs = createBottomTabNavigator(
+  {
+    Explore: {
+      screen: Explore,
+      navigationOptions: {
+        tabBarLabel: "EXPLORE",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="search" color={tintColor} size={24} />
+        )
+      }
+    },
+    Saved: {
+      screen: Saved,
+      navigationOptions: {
+        tabBarLabel: "SAVED",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="heart" color={tintColor} size={24} />
+        )
+      }
+    },
+    Trips: {
+      screen: Trips,
+      navigationOptions: {
+        tabBarLabel: "Trips",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="award" color={tintColor} size={24} />
+        )
+      }
+    },
+    Inbox: {
+      screen: Inbox,
+      navigationOptions: {
+        tabBarLabel: "INBOX",
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="copy" color={tintColor} size={24} />
+        )
+      }
+    }
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: "red",
+      inactiveTintColor: "grey",
+      style: {
+        backgroundColor: "white",
+        borderTopWidth: 0,
+        shadowOffset: { width: 5, height: 3 },
+        shadowColor: "black",
+        shadowOpacity: 0.5,
+        elevation: 5
+      }
+    }
+  }
+);
+
+export default createAppContainer(Tabs);
