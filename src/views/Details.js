@@ -1,16 +1,24 @@
-import React from "react";
+import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-navigation";
 
-import { Button } from "react-native-elements";
+class Details extends PureComponent {
+  static propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func.isRequired
+    }).isRequired
+  };
 
-export default class Explore extends React.Component {
   static navigationOptions = {
-    title: "Explore Main Page"
+    title: "Details Page"
   };
 
   render() {
     const { navigation } = this.props;
+
+    const { workoutId } = navigation.state.params;
+
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
@@ -22,20 +30,12 @@ export default class Explore extends React.Component {
               borderBottomColor: "#ddddd"
             }}
           >
-            <Text>Explore</Text>
+            <Text>Details Page ---- {workoutId}</Text>
           </View>
-        </View>
-        <View style={{ flex: 2 }}>
-          <Button
-            title="To go Details"
-            onPress={() =>
-              navigation.push("Details", {
-                workoutId: 100
-              })
-            }
-          />
         </View>
       </SafeAreaView>
     );
   }
 }
+
+export default Details;

@@ -7,7 +7,9 @@ module.exports = function(api) {
         "module-resolver",
         {
           alias: {
-            "@views": "./src/views"
+            "@views": "./src/views",
+            "@stores": "./src/stores",
+            "@images": "./src/assets/images"
           }
         }
       ]
