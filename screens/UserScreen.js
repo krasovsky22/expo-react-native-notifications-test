@@ -1,14 +1,16 @@
-import React from 'react';
-import { Image, Text, View } from 'react-native';
-import { inject, observer } from 'mobx-react';
-import NavigationService from '../navigation/NavigationService';
-import { ScreenWrapper } from './Components';
+import React from "react";
+import { Image, Text, View } from "react-native";
+import { inject, observer } from "mobx-react";
+import NavigationService from "../navigation/NavigationService";
+import { ScreenWrapper } from "./Components";
 
 class _UserScreen extends React.Component {
   static navigationOptions = ({ screenProps, navigation }) => {
-    const { user } = screenProps.navigationStore.getParamsForCurrentRoute(navigation);
+    const { user } = screenProps.navigationStore.getParamsForCurrentRoute(
+      navigation
+    );
     return {
-      title: user.login,
+      title: user.login
     };
   };
 
@@ -32,5 +34,5 @@ class _UserScreen extends React.Component {
 }
 
 export const UserScreen = inject(({ rootStore: { navigationStore } }) => ({
-  navigationStore,
+  navigationStore
 }))(observer(_UserScreen));
