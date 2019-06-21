@@ -1,17 +1,20 @@
-import { types, onSnapshot, getSnapshot } from 'mobx-state-tree';
-import { RepoStore } from './RepoStore';
-import { UserStore } from './UserStore';
-import { NavigationStore } from './NavigationStore';
-import { AsyncStorage } from 'react-native';
+import { types, onSnapshot, getSnapshot } from "mobx-state-tree";
+import { RepoStore } from "./RepoStore";
+import { UserStore } from "./UserStore";
+import { NavigationStore } from "./NavigationStore";
+import { AsyncStorage } from "react-native";
 
 export const RootStore = types
-  .model('RootStore', {
-    identifier: types.optional(types.identifier, 'RootStore'),
+  .model("RootStore", {
+    identifier: types.optional(types.identifier, "RootStore"),
     userStore: types.optional(UserStore, () => UserStore.create({ users: {} })),
     repoStore: types.optional(RepoStore, () => RepoStore.create({ repos: [] })),
     navigationStore: types.optional(NavigationStore, () =>
-      NavigationStore.create({ repoDetailScreenParams: {}, userScreenParams: {} })
-    ),
+      NavigationStore.create({
+        repoDetailScreenParams: {},
+        userScreenParams: {}
+      })
+    )
   })
   .actions(self => ({
     async save() {
@@ -19,9 +22,9 @@ export const RootStore = types
         const transformedSnapshot = getSnapshot(self);
         const json = JSON.stringify(transformedSnapshot);
 
-        await AsyncStorage.setItem('appStatePersistenceKey', json);
+        await AsyncStorage.setItem("appStatePersistenceKey", json);
       } catch (err) {
-        console.warn('unexpected error ' + err);
+        console.warn("unexpected error " + err);
       }
-    },
+    }
   }));

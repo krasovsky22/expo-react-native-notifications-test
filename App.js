@@ -1,18 +1,23 @@
-import React from 'react';
-import { Platform, StatusBar, StyleSheet, View, AsyncStorage } from 'react-native';
-import { AppLoading, Asset, Font, Icon } from 'expo';
-import { createAppNavigator } from './navigation/AppNavigator';
-import { Provider } from 'mobx-react';
-import { applySnapshot } from 'mobx-state-tree';
-import { RootStore } from './stores/RootStore';
-import NavigationService from './navigation/NavigationService';
+import React from "react";
+import {
+  Platform,
+  StatusBar,
+  StyleSheet,
+  View,
+  AsyncStorage
+} from "react-native";
+import { AppLoading, Asset, Font, Icon } from "expo";
+import { createAppNavigator } from "./navigation/AppNavigator";
+import { Provider } from "mobx-react";
+import { applySnapshot } from "mobx-state-tree";
+import { RootStore } from "./stores/RootStore";
+import NavigationService from "./navigation/NavigationService";
 
-const appStatePersistenceKey = 'appStatePersistenceKey';
-const navigationPersistenceKey = __DEV__ ? 'NavigationStateDEV' : null;
+const appStatePersistenceKey = "appStatePersistenceKey";
 
 export default class App extends React.Component {
   state = {
-    isLoadingComplete: false,
+    isLoadingComplete: false
   };
 
   constructor(props) {
@@ -35,9 +40,9 @@ export default class App extends React.Component {
       return (
         <Provider rootStore={this.rootStore}>
           <View style={styles.container}>
-            {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+            {Platform.OS === "ios" && <StatusBar barStyle="default" />}
             <AppNavigator
-              persistenceKey={navigationPersistenceKey}
+              _loadPersistedState={this._loadPersistedState}
               ref={navigatorRef => {
                 NavigationService.setTopLevelNavigator(navigatorRef);
               }}
@@ -51,17 +56,17 @@ export default class App extends React.Component {
   _loadResourcesAsync = async () => {
     return Promise.all([
       Asset.loadAsync([
-        require('./assets/images/robot-dev.png'),
-        require('./assets/images/robot-prod.png'),
+        require("./assets/images/robot-dev.png"),
+        require("./assets/images/robot-prod.png")
       ]),
       Font.loadAsync({
         // This is the font that we are using for our tab bar
         ...Icon.Ionicons.font,
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
-        'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+        "space-mono": require("./assets/fonts/SpaceMono-Regular.ttf")
       }),
-      this._loadPersistedState(),
+      this._loadPersistedState()
     ]);
   };
 
@@ -90,6 +95,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
+    backgroundColor: "#fff"
+  }
 });
