@@ -1,17 +1,18 @@
+import { Ionicons } from "@expo/vector-icons";
+import { AppLoading, Asset, Font } from "expo";
+import { Provider } from "mobx-react";
+import { applySnapshot } from "mobx-state-tree";
 import React from "react";
 import {
+  AsyncStorage,
   Platform,
   StatusBar,
   StyleSheet,
-  View,
-  AsyncStorage
+  View
 } from "react-native";
-import { AppLoading, Asset, Font, Icon } from "expo";
 import { createAppNavigator } from "./navigation/AppNavigator";
-import { Provider } from "mobx-react";
-import { applySnapshot } from "mobx-state-tree";
-import { RootStore } from "./stores/RootStore";
 import NavigationService from "./navigation/NavigationService";
+import { RootStore } from "./stores/RootStore";
 
 const appStatePersistenceKey = "appStatePersistenceKey";
 
@@ -60,11 +61,10 @@ export default class App extends React.Component {
         require("./assets/images/robot-prod.png")
       ]),
       Font.loadAsync({
-        // This is the font that we are using for our tab bar
-        ...Icon.Ionicons.font,
-        // We include SpaceMono because we use it in HomeScreen.js. Feel free
-        // to remove this if you are not using it in your app
-        "space-mono": require("./assets/fonts/SpaceMono-Regular.ttf")
+        ...Ionicons.font,
+
+        Roboto: require("native-base/Fonts/Roboto.ttf"),
+        Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
       }),
       this._loadPersistedState()
     ]);
