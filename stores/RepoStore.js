@@ -25,15 +25,17 @@ export const RepoStore = types
     };
 
     return {
-      fetchRepos: flow(function*() {
+      fetchRepos: flow(function* () {
         if (!self.username) {
           return;
         }
         const reposJson = yield fetch(`https://api.github.com/users/${self.username}/repos`).then(
           resp => resp.json()
         );
-        setRepos(reposJson);
-        return reposJson;
+        if (!reposJson.message) {
+          setRepos(reposJson);
+          return reposJson;
+        }
       }),
       setUsername(value) {
         self.username = value;

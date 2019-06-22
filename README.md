@@ -30,3 +30,6 @@ There are four screens to navigate to:
 - install expo cli
 - clone and run `yarn`
 - run `yarn start`
+
+
+UI using https://docs.nativebase.io/docs/GetStarted.html
