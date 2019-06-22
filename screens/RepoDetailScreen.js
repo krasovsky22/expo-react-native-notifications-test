@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Button } from 'react-native';
 import { ExpoLinksView } from '@expo/samples';
 import { inject, observer } from 'mobx-react';
-import NavigationService from '../navigation/NavigationService';
+import NavigationService from '@navigation/NavigationService';
 import { ScreenWrapper } from './Components';
 
 class _RepoDetailScreen extends React.Component {

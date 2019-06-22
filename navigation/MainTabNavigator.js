@@ -3,11 +3,8 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import hoistNonReactStatic from 'hoist-non-react-statics';
 
-import TabBarIcon from '../components/TabBarIcon';
-import { HomeScreen } from '../screens/HomeScreen';
-import { SettingsScreen } from '../screens/SettingsScreen';
-import { UserScreen } from '../screens/UserScreen';
-import { RepoDetailScreen } from '../screens/RepoDetailScreen';
+import TabBarIcon from '@components/TabBarIcon';
+import { HomeScreen,SettingsScreen,UserScreen,RepoDetailScreen } from '@screens';
 
 const HomeStack = createStackNavigator({
   HomeScreen,

@@ -1,5 +1,5 @@
 import { NavigationActions } from 'react-navigation';
-import { RouteParams, RouteParam } from '../stores/NavigationStore';
+import { RouteParams, RouteParam } from '@stores/NavigationStore';
 let _navigator, _navStore;
 
 function setTopLevelNavigator(navigatorRef) {
