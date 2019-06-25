@@ -1,6 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "devtools": "react-devtools",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -33,7 +34,8 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "jest-expo": "^32.0.0"
+    "jest-expo": "^32.0.0",
+    "react-devtools": "^3.6.1"
   },
   "private": true
 }

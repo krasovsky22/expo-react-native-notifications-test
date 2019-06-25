@@ -7,10 +7,13 @@ import {
   Header,
   Body,
   Grid,
-  Row
+  Row,
+  View
 } from "native-base";
 import React from "react";
 import { Text } from "react-native";
+
+import Calendar from "@components/Calendar";
 
 class _GymSummaryScreen extends React.Component {
   static navigationOptions = {
@@ -21,14 +24,10 @@ class _GymSummaryScreen extends React.Component {
     return (
       <Container>
         <Grid>
-          <Row size={20}>
-            <Content>
-              <Text>aaaaaaaaa</Text>
-            </Content>
+          <Row size={15} style={{ backgroundColor: "white" }}>
+            <Calendar />
           </Row>
-          <Row size={80}>
-            <Text>Body</Text>
-          </Row>
+          <Row size={85} style={{ backgroundColor: "yellow" }} />
         </Grid>
       </Container>
     );
