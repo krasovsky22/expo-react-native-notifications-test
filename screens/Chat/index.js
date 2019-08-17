@@ -8,6 +8,7 @@ import {
   Body,
   Grid,
   Row,
+  Col,
   View
 } from "native-base";
 import React from "react";
@@ -22,7 +23,8 @@ class _ChatScreen extends React.Component {
     return (
       <Container>
         <Grid>
-          <Text>CHAT HERE</Text>
+          <Row style={{ backgroundColor: "#635DB7" }} size={90} />
+          <Row style={{ backgroundColor: "#00CE9F" }} size={10} />
         </Grid>
       </Container>
     );
