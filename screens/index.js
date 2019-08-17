@@ -1,14 +1,7 @@
 import { HomeScreen } from "./HomeScreen";
 import { UserScreen } from "./UserScreen";
-import { SettingsScreen } from "./SettingsScreen";
 import { RepoDetailScreen } from "./RepoDetailScreen";
 
-import { GymSummaryScreen } from "./Gym/Summary";
+import { ChatScreen } from "./Chat";
 
-export {
-  HomeScreen,
-  UserScreen,
-  SettingsScreen,
-  RepoDetailScreen,
-  GymSummaryScreen
-};
+export { HomeScreen, UserScreen, RepoDetailScreen, ChatScreen };

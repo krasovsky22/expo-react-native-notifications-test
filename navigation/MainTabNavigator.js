@@ -7,13 +7,7 @@ import {
 import hoistNonReactStatic from "hoist-non-react-statics";
 
 import TabBarIcon from "@components/TabBarIcon";
-import {
-  HomeScreen,
-  SettingsScreen,
-  UserScreen,
-  RepoDetailScreen,
-  GymSummaryScreen
-} from "@screens";
+import { HomeScreen, UserScreen, RepoDetailScreen, ChatScreen } from "@screens";
 
 const HomeStack = createStackNavigator({
   HomeScreen,
@@ -35,26 +29,12 @@ HomeStack.navigationOptions = {
   )
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen
+const ChatStack = createStackNavigator({
+  ChatScreen
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: "Settings",
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === "ios" ? "ios-options" : "md-options"}
-    />
-  )
-};
-
-const GymWorkoutStack = createStackNavigator({
-  GymSummaryScreen
-});
-
-GymWorkoutStack.navigationOptions = {
-  tabBarLabel: "GYM",
+ChatStack.navigationOptions = {
+  tabBarLabel: "CHAT",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -65,12 +45,11 @@ GymWorkoutStack.navigationOptions = {
 
 export const createMainTabNavigator = rootStore => {
   const TargetComponent = props => {
-    return <GymWorkoutStack {...props} screenProps={rootStore} />;
+    return <ChatStack {...props} screenProps={rootStore} />;
   };
 
   return createBottomTabNavigator({
-    GymWorkoutStack: hoistNonReactStatic(TargetComponent, GymWorkoutStack),
-    HomeStack,
-    SettingsStack
+    ChatStack: hoistNonReactStatic(TargetComponent, ChatStack),
+    HomeStack
   });
 };
